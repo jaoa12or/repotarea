@@ -4,19 +4,25 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <time.h>
 
 main(int arg, char *argv[])
 {
 
-	char *archivos[60] ;
-  evaluarDir(archivos,argv[1]);
+	clock_t start = clock();
+
+	char *archivos[60];
+
+	infoDir(archivos,argv[1]);
+
+	printf("Tiempo transcurrido: %f\n", ((double)clock() - start) / CLOCKS_PER_SEC);
 
 	
 }
 
 
 
-	void evaluarDir(char *archivos[], char directorio[100])
+	int evaluarDir(char *archivos[], char directorio[100])
 	{
 	struct dirent **entradas= NULL;
 
@@ -24,7 +30,7 @@ main(int arg, char *argv[])
 	int numeroEntradas = scandir (directorio, &entradas, NULL, NULL);
 	
 
-	char destino[120];
+
 	int contador = 0;
 
 	
@@ -33,30 +39,54 @@ main(int arg, char *argv[])
 	{
 		if(entradas[i]->d_type == DT_REG)
 		{	
-		strcat(destino,directorio);
-		strcat(destino,"/");
-		
 		
 		archivos[i] = entradas[i]->d_name;
 		printf ("%s\n", archivos[i]);
-		strcat(destino,archivos[i]);
-		contador += filesize(destino);
-		destino[0] = '\0';
 		free (entradas[i]);
 		entradas[i] = NULL;
 		}
 		
 	}
-	 printf ("Peso total: %d\n",contador);
 	
+	return numeroEntradas;
+
 	free (entradas);
 	entradas = NULL;
 	}
 
 
+	void infoDir(char *archivos[], char directorio[100])
+		{
 
 
-int filesize(char *filename) {
+
+			char destino[120];
+			int contador = 0;
+
+			evaluarDir(archivos,directorio);
+
+
+			for (int i=0; i<numeroEntradas; i++)
+			{
+
+				strcat(destino,directorio);
+				strcat(destino,"/");
+				strcat(destino,archivos[i]);
+				printf ("%s\n", destino);
+				contador += filesize(destino);
+				destino[0] = '\0';
+
+
+
+			}
+
+			printf ("Peso total: %d\n",contador);
+
+
+		}
+
+
+	int filesize(char *filename) {
         // Definicion e inicializacion de variables
         FILE *fp;
         int count = 0;
