@@ -25,7 +25,7 @@ main(int arg, char *argv[])
 	
 
 	char destino[120];
-	
+	int contador = 0;
 
 	
 
@@ -40,14 +40,14 @@ main(int arg, char *argv[])
 		archivos[i] = entradas[i]->d_name;
 		printf ("%s\n", archivos[i]);
 		strcat(destino,archivos[i]);
-		printf ("%d\n",filesize(destino));
+		contador += filesize(destino);
 		destino[0] = '\0';
 		free (entradas[i]);
 		entradas[i] = NULL;
 		}
 		
 	}
-
+	 printf ("Peso total: %d\n",contador);
 	
 	free (entradas);
 	entradas = NULL;
