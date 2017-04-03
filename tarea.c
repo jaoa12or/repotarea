@@ -13,7 +13,9 @@ main(int arg, char *argv[])
 
 	char *archivos[60];
 
-	infoDir(archivos,argv[1]);
+
+	evaluarDir(archivos,argv[1]);
+
 
 	printf("Tiempo transcurrido: %f\n", ((double)clock() - start) / CLOCKS_PER_SEC);
 
@@ -22,7 +24,7 @@ main(int arg, char *argv[])
 
 
 
-	int evaluarDir(char *archivos[], char directorio[100])
+	void evaluarDir(char *archivos[60], char directorio[100])
 	{
 	struct dirent **entradas= NULL;
 
@@ -30,63 +32,90 @@ main(int arg, char *argv[])
 	int numeroEntradas = scandir (directorio, &entradas, NULL, NULL);
 	
 
-
+	char desti[100];
 	int contador = 0;
+	int contador2 = 0;
+	int tope = (int) numeroEntradas/2;
+	int ini = ((int) numeroEntradas/2)+1;
 
-	
+	int idb = fork();
 
-	for (int i=0; i<numeroEntradas; i++)
+	if(idb = 0)
 	{
-		if(entradas[i]->d_type == DT_REG)
-		{	
-		
-		archivos[i] = entradas[i]->d_name;
-		printf ("%s\n", archivos[i]);
-		free (entradas[i]);
-		entradas[i] = NULL;
-		}
-		
-	}
-	
-	return numeroEntradas;
 
-	free (entradas);
-	entradas = NULL;
-	}
+		//printf (" %d\n",tope);
 
-
-	void infoDir(char *archivos[], char directorio[100])
+		for (int i=0; i<tope; i++)
 		{
-
-
-
-			char destino[120];
-			int contador = 0;
-
-			evaluarDir(archivos,directorio);
-
-
-			for (int i=0; i<numeroEntradas; i++)
+			printf (" %d\n",i);
+			if(entradas[i]->d_type == DT_REG)
 			{
 
-				strcat(destino,directorio);
-				strcat(destino,"/");
-				strcat(destino,archivos[i]);
-				printf ("%s\n", destino);
-				contador += filesize(destino);
-				destino[0] = '\0';
+				for (int i = 0; i<100;i++)
+					{
+						desti[i] = directorio[i];
+					}
 
-
+				strcat(desti,"/");
+				archivos[i]= entradas[i]->d_name;
+				strcat(desti,archivos[i]);
+				contador += filesize(desti);
+				desti[0] = '\0';
+				contador2++;
+				free (entradas[i]);
+				entradas[i] = NULL;
 
 			}
 
-			printf ("Peso total: %d\n",contador);
-
-
 		}
 
+	}
 
-	int filesize(char *filename) {
+		else
+		{
+
+
+			printf (" %d\n",ini);
+
+					for (int i=ini; i< numeroEntradas; i++)
+					{
+						printf (" %d\n",i);
+
+						if(entradas[i]->d_type == DT_REG)
+						{
+
+							for (int i = 0; i<100;i++)
+								{
+									desti[i] = directorio[i];
+								}
+
+							strcat(desti,"/");
+							archivos[i]= entradas[i]->d_name;
+							strcat(desti,archivos[i]);
+							contador += filesize(desti);
+							desti[0] = '\0';
+							contador2++;
+							free (entradas[i]);
+							entradas[i] = NULL;
+
+						}
+					}
+		}
+		printf ("Numero de archivos: %d\n",contador2);
+		printf ("Peso total: %d\n",contador);
+
+		free (entradas);
+		entradas = NULL;
+
+
+
+
+	}
+
+
+
+
+	int filesize(char filename[100]) {
         // Definicion e inicializacion de variables
         FILE *fp;
         int count = 0;
@@ -95,6 +124,7 @@ main(int arg, char *argv[])
         // de bytes del archivo
         fp = fopen(filename,"r");
         if (fp == NULL) {
+        	printf("%s\n", filename);
                 perror("filesize - No se pudo abrir archivo\n");
                 return -1;
         }
@@ -102,6 +132,8 @@ main(int arg, char *argv[])
                 count++;
         }
         fclose(fp);
+        //printf("%d\n", count);
+
         return count;
 }
 
