@@ -13,14 +13,14 @@
 main(int arg, char *argv[])
 {
 
-	clock_t start = clock();
+	
 
 	char *archivos[60];
 
 
 	evaluarDir(archivos,argv[1]);
 
-	printf("Tiempo transcurrido: %f\n", ((double)clock() - start) / CLOCKS_PER_SEC);
+
 
 
 	
