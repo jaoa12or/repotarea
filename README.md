@@ -2,4 +2,19 @@ Jhon Alejandro Orobio Arce 201533627
 
 Carolina Dorado Ruiz 201522589
 
-Este repositorio incluye el código propuesto por mi parte para la solución de los primeros dos puntos de la tarea , que incluyen algunas funciones escontradas en internet y el algoritmo propuesto por el profesor para el cálculo del peso
+*********************************************************************************************
+
+Este repositorio incluye los archivos fileutil.c, fileutil.h, Makefile, io.c,iofork.c.
+
+-fileutil.c: contiene la implementación de las funciones requeridas para el funcionamiento del programa.
+
+-fileutil.h: contiene la declaración de las funciones requeridas para el funcionamiento del programa.
+
+-io.c : contiene la implementación del programa sin el llamado a la función fork.
+
+-iofork.c: contienela implementación del programa con la llamada a la función fork.
+
+-Makefile: contiene los comandos requeridos para la compilación y posterior ejecución del programa.
+
+
+*****************************************************************************************************
