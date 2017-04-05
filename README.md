@@ -4,7 +4,7 @@ Carolina Dorado Ruiz 201522589
 
 *********************************************************************************************
 
-Este repositorio incluye los archivos fileutil.c, fileutil.h, Makefile, io.c,iofork.c.
+Este repositorio incluye los archivos fileutil.c, fileutil.h, Makefile, io.c,iofork.c, main.c
 
 -fileutil.c: contiene la implementación de las funciones requeridas para el funcionamiento del programa.
 
@@ -16,5 +16,5 @@ Este repositorio incluye los archivos fileutil.c, fileutil.h, Makefile, io.c,iof
 
 -Makefile: contiene los comandos requeridos para la compilación y posterior ejecución del programa.
 
-
+-main.c: este archivo contiene la función principal que será llamada para la ejecución del programa.
 *****************************************************************************************************
