@@ -29,7 +29,7 @@ main(int arg, char *argv[])
 	void evaluarDir(char *archivos[60], char directorio[100])
 	{
 
-	clock_t start = clock();
+	
 
 	struct dirent **entradas= NULL;
 
@@ -82,7 +82,7 @@ main(int arg, char *argv[])
 		printf ("Numero de archivos: %d + %d = %d\n",contador2, contahijo,contador2+contahijo);
 		read(fd[0],&contahijo2,sizeof(contahijo2));
 		printf ("Peso total: %d + %d = %d bytes\n",contador, contahijo2,contador+contahijo2);
-		printf("Tiempo transcurrido: %f\n", ((double)clock() - start) / CLOCKS_PER_SEC);
+		
 
 	}
 
