@@ -14,14 +14,10 @@ main(int arg, char *argv[])
 {
 
 	
-
 	char *archivos[60];
 
 
 	evaluarDir(archivos,argv[1]);
-
-
-
 
 	
 }
@@ -70,10 +66,11 @@ main(int arg, char *argv[])
 				}
 			}
 
-					
+		printf("Estudiante_1 : 201522589\n");
+		printf("Estudiante_2 : 201533627\n");			
 
-		printf ("Numero de archivos: %d\n",contador2);
-		printf ("Peso total: %d bytes\n",contador);
+		printf ("Total archivos: %d\n",contador2);
+		printf ("Total bytes: %d\n",contador);
 		
 
 
@@ -112,5 +109,7 @@ main(int arg, char *argv[])
 
         return count;
 }
+
+
 
 
