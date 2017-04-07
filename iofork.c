@@ -29,7 +29,7 @@ main(int arg, char *argv[])
 	void evaluarDir(char *archivos[60], char directorio[100])
 	{
 
-	
+
 
 	struct dirent **entradas= NULL;
 
@@ -79,10 +79,12 @@ main(int arg, char *argv[])
 			}
 
 		read(fd[0],&contahijo,sizeof(contahijo));
-		printf ("Numero de archivos: %d + %d = %d\n",contador2, contahijo,contador2+contahijo);
+		printf("Estudiante_1 : 201522589\n");
+		printf("Estudiante_2 : 201533627\n");
+		printf ("Total archivos: %d\n",contador2+contahijo);
 		read(fd[0],&contahijo2,sizeof(contahijo2));
-		printf ("Peso total: %d + %d = %d bytes\n",contador, contahijo2,contador+contahijo2);
-		
+		printf ("Total bytes: %d\n",contador+contahijo2);
+
 
 	}
 
@@ -157,4 +159,5 @@ main(int arg, char *argv[])
 
         return count;
 }
+
 
